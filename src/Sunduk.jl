@@ -70,10 +70,12 @@ end
 
 function example(str)
     println("Initial message: $str")
+    println("-----------------------------")
     Message= str_to_matrix(str)
     m, n = size(Message)
     BobtoAlise = matrix_to_str(Message)
     println("Bob sent to Alise: \"$BobtoAlise\"")
+    println("-----------------------------")
     L = rand(Mod{131},m,n)
     L1=inv(L)
     R = rand(Mod{131},m,n)
@@ -81,26 +83,36 @@ function example(str)
     S1 = L * Message
     AliseReceived = matrix_to_str(S1)
     println("Alise received: \"$AliseReceived\"")
+    println("-----------------------------")
     S2 = S1 * R
     BobReceived = matrix_to_str(S2)
     println("Bob received: \"$BobReceived\"")
+    println("-----------------------------")
     S3 = L1 * S2
     AliseReceived = matrix_to_str(S3)
     println("Alise received: \"$AliseReceived\"")
     S4 = S3 * R1
+    println("-----------------------------")
     AliseDecoded = matrix_to_str(S4)
     println("Alise decoded: \"$AliseDecoded\"")
+    println("-----------------------------")
 end
 
-# julia> example("Hello Julia!!!")
-# Initial message: Hello Julia!!!
-# Bob sent to Alise: "Hello Julia!!!           "
-# Alise received: "S
-# =dJocrt:.jZ/(*Z/(*"
-# Bob received: "[r )850'i$Q';	aQUV9sv0>
-# Alise received: "'oAb?AxHHqOfr
-#                               (`K4sg"
-# Alise decoded: "Hello Julia!!!           "
+# julia> example("We all live in a yellow submarine")
+# Initial message: We all live in a yellow submarine
+# -----------------------------
+# Bob sent to Alise: "We all live in a yellow submarine                "
+# -----------------------------
+# Alise received: "W&:*!.N=n3k+ Z
+# "vRz4                          T)JVa" 1Rz4
+# -----------------------------
+# Bob received: "Y9.o31Yt^(Bw~5khgZ3k:
+#                                       }!vKgT%kbQv"
+# -----------------------------
+# Alise received: "%Tc%oXwW]~E/G0<sxiZ#{_SSuo#M8pe5t7kwL;j"
+# -----------------------------
+# Alise decoded: "We all live in a yellow submarine                "
+# -----------------------------
 
 
 
